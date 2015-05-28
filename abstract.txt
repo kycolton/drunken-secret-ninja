@@ -1,0 +1,8 @@
+Kyle Colton
+Thomas Kwak
+
+Indian Pines Hyperspectral Imaging
+
+Classification of Land Types Through Clustering
+
+The data is hyperspectral imaging of the earth with different measurements for various land-type properties. By using something like either a SVM or EM clustering of values at each pixel to determine land-type classifications, we hope to be able to generate a map of the various land types to overlay over the original image. We hope to differentiate at least two land-type (likely farm versus other).
