@@ -10,18 +10,13 @@ obs = reshape(indian_pines_corrected,[k,n*m])';
 % SVM SHOULD BE REWRITTEN FOR MORE CLASSES
 
 A = 2*randi([1,2],1,n*m)-3;
-%size(obs.')
-%size(A.')
 
 [beta, c] = softsvm(obs.',A.',0.005);
 
-size(A)
-size(beta)
-size(c)
-
-figure;
-plot(A*beta+c, 'Color', 'red');
+fig = figure;
+plot(obs*beta+c, 'Color', 'red');
 hold on;
-plot(L, 'Color', 'blue');
-legend('A' * beta + c', 'L', 'Location', 'southoutside');
+legend('obs * beta + c', 'Location', 'southoutside');
 hold off;
+
+print(fig,'softsvmImage','-dpng')
