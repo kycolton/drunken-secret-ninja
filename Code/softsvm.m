@@ -12,7 +12,7 @@
 function [beta, c] = softsvm(X, Y, gamma)
     
 % Create parameters for quadprog
-    disp('Creating parameters for quadprog');
+    disp('Creating parameters for quadprog.');
 
     [d, n] = size(X);    
     
@@ -22,10 +22,10 @@ function [beta, c] = softsvm(X, Y, gamma)
     b = -ones(n, 1);    
     lb = vertcat(zeros(n, 1), -inf(d+1, 1)); 
     
-    disp('Finished created parameters for quadprog');
+    disp('Finished created parameters for quadprog.');
     
 % Run quadprog
-    disp('Starting quadprog');
+    disp('Starting quadprog.');
     
     opts = optimoptions('quadprog','Algorithm','interior-point-convex');
     ybc = quadprog(H,f,A,b,[],[],lb,[],[],opts);
@@ -33,11 +33,11 @@ function [beta, c] = softsvm(X, Y, gamma)
     disp('Finished quadprog');
     
 % Final calculations
-    disp('Starting beta and c calculations');
+    disp('Starting beta and c calculations.');
     
     beta = ybc(n+1:n+d, 1); 
     c = ybc(n+d+1, 1);
     
-    disp('Finished beta and c calculations. Process completed successfully');
+    disp('Finished beta and c calculations. Process completed successfully.');
 
 end

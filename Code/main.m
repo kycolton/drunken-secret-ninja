@@ -25,3 +25,6 @@ print(fig,'softsvmImage','-dpng')
 
 % runs k-means for 10 observations
 [C, labels] = km(obs.', 10);
+
+% save k-means data to csv
+csvwrite('labels.csv', labels);

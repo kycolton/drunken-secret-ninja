@@ -32,6 +32,8 @@ function [C, labels] = km(A, K)
         end
     end
     
+    disp('Starting k-means calculations.');
+    
 % iterates until classes no longer change
 changes = N;
 while(changes ~= 0)
@@ -85,6 +87,6 @@ while(changes ~= 0)
     end
 end
  
-disp('Process completed.');
+disp('Finsihed k-means calculations. Process completed.');
 
 end
