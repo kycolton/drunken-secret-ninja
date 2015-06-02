@@ -20,6 +20,10 @@
 \titlepage
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%%   Introduction   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
 %\begin{frame}
 %\tableofcontents
 %\end{frame}
@@ -33,7 +37,25 @@ The \texttt{indian\_pines} dataset consists of hyperspectral earth images of far
 \begin{itemize}
 \item Dimensions $145 x 145 x 200$
 \item Each image is $145x145$
+\end{itemize}
+\end{column}
+\hfill
+\begin{column}{.48\textwidth}
+% RIGHT COLUMN
+\includegraphics[scale=.3]{gt.png}
+\end{column}
+\end{columns}
+\end{frame}
+
+\subsection{Problem}
+\begin{frame}{Data Set}
+The \texttt{indian\_pines} dataset consists of hyperspectral earth images of farmland
+\begin{columns}[T]
+\begin{column}{.48\textwidth}
+% LEFT COLUMN
+\begin{itemize}
 \item Images were captured at 200 different wavelengths
+\item A total of 16 crops were used in the data set
 \end{itemize}
 \end{column}
 \hfill
@@ -53,7 +75,13 @@ The \texttt{indian\_pines} dataset consists of hyperspectral earth images of far
 \end{center}
 \end{frame}
 
-\section{Analysis}
+\begin{frame}{Historgrams}
+\begin{center}
+% To run this, you must first convert the GIF to a series of PNGs
+% bash: convert histograms.gif histograms_%d.png
+\animategraphics[autoplay,loop,height=6cm]{10}{histograms_}{0}{199}
+\end{center}
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%
 %%%   K-Means   %%%
@@ -125,9 +153,53 @@ The \texttt{indian\_pines} dataset consists of hyperspectral earth images of far
 %%%%%%%%%%%%%%%
 
 \section{SVM}
+\subsection{Soft SVM}
 \begin{frame}{Support Vector Machine}
-
+\begin{columns}[T]
+\begin{column}{.48\textwidth}
+% LEFT COLUMN
+\item Separates data into distinct classes
+\item Constructs a hyperplane between classes
+\item Soft-margin SVM versus Hard-margin SVM
+\end{column}
+\hfill
+\begin{column}{.48\textwidth}
+% RIGHT COLUMN
+\end{column}
+\end{columns}
 \end{frame}
+
+\subsection{Soft SVM}
+\begin{frame}{Support Vector Machine}
+\begin{columns}[T]
+\begin{column}{.48\textwidth}
+% LEFT COLUMN
+\includegraphics[scale=.3]{softsvmImage.png}
+\end{column}
+\hfill
+\begin{column}{.48\textwidth}
+% RIGHT COLUMN
+\item Arbitrarily picked to separate between corn and not corn
+\item Soft SVM because of possibility of nonlinear separability and less influence by noise
+\item Reduced data from 3D to 2D
+\end{column}
+\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%   Conclusion   %%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Conclusion}
+\subsection{Results}
+\begin{frame}{Results}
+\item K-Means: increase in the number of classes increases the noise level
+\item Soft-Margin SVM: data cannot be separated linearly
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%   Future Analysis   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Further Analysis}
 \subsection{Noise Detection}
@@ -149,22 +221,23 @@ The \texttt{indian\_pines} dataset consists of hyperspectral earth images of far
 \end{columns}
 \end{frame}
 
-\begin{frame}{Historgrams}
-\begin{center}
-% To run this, you must first convert the GIF to a series of PNGs
-% bash: convert histograms.gif histograms_%d.png
-\animategraphics[autoplay,loop,height=6cm]{10}{histograms_}{0}{199}
-\end{center}
+\subsection{Support Vector Machine}
+\begin{frame}{Future Ideas}
+\begin{columns}[T]
+\begin{column}{.48\textwidth}
+% LEFT COLUMN
+\includegraphics[scale=.4]{groundtruth.png}
+\end{column}
+\hfill
+\begin{column}{.48\textwidth}
+% RIGHT COLUMN
+\begin{itemize}
+\item Implement a multiclass SVM function
+\item Completely split the data into 16 classes instead of 2
+\item Increase accuracy of data separation
+\end{itemize}
+\end{column}
+\end{columns}
 \end{frame}
 
-\section{Conclusion}
-\subsection{Results}
-\begin{frame}{Results}
-
-\end{frame}
-
-\subsection{Conclusion}
-\begin{frame}{Conclusion}
-
-\end{frame}
 \end{document}
