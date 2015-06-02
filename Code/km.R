@@ -1,5 +1,8 @@
 library(R.matlab)
 library(reshape)
+library(animation)
+library(ggplot2)
+
 ip <- readMat('Data/Indian_pines_corrected.mat')
 ip <- array(unlist(ip),dim=c(145,145,200))
 
@@ -8,11 +11,11 @@ n <- dim(ip)[1]; m <- dim(ip)[2]; z <- dim(ip)[3]
 ip.long <- array(0,dim=c(n * m, 3, z))
 for( i in 1:(z) )
 { ip.long[,,i] <- as.matrix(as.data.frame(melt(ip[,,i]))) }
-library(ggplot2)
+
 for( i in 1:z )
 {
     print(ggplot(as.data.frame(ip.long[,,i]),aes(V1,V2,color=V3))+geom_point())
-    readline("Press <return to continue") 
+    readline("Press <return> to continue") 
 }
 
 ip.df <- array(dim=c(m*n,z))
@@ -22,7 +25,7 @@ for( i in 1:n)
     { ip.df[(i-1)*n+j,] <- ip[i,j,] }
 }
 
-ip.km <- kmeans(ip.df,2)
+ip.km <- kmeans(ip.df,5)
 
 classed <- matrix(ip.km$cluster,nrow=n,ncol=m,byrow=T)
 
@@ -30,6 +33,13 @@ ip.km.df <- as.data.frame(cbind(rep(1:n,each=m),rep(1:m,n),ip.km$cluster))
 names(ip.km.df) <- c('x','y','class')
 
 ggplot(ip.km.df,aes(x,y,color=as.factor(class))) + geom_point()
+
+
+saveGIF({for(i in 1:z)
+{ print(
+    ggplot(as.data.frame(melt(ip[,,i])),aes(value)) + geom_histogram(binwidth=1,aes(y=..density..)) + xlim(750,8250))
+}}, interval=0.2, movie.name = 'histograms.gif')
+
 
 
 #~ km3d <- function(x,k,v=F)
