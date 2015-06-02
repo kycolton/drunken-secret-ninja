@@ -24,9 +24,6 @@
 %%%   Introduction   %%%
 %%%%%%%%%%%%%%%%%%%%%%%%
 
-%\begin{frame}
-%\tableofcontents
-%\end{frame}
 \section{Introduction}
 \subsection{Problem}
 \begin{frame}{Data Set}
@@ -47,7 +44,6 @@ The \texttt{indian\_pines} dataset consists of hyperspectral earth images of far
 \end{columns}
 \end{frame}
 
-\subsection{Problem}
 \begin{frame}{Data Set}
 The \texttt{indian\_pines} dataset consists of hyperspectral earth images of farmland
 \begin{columns}[T]
@@ -88,7 +84,7 @@ The \texttt{indian\_pines} dataset consists of hyperspectral earth images of far
 %%%%%%%%%%%%%%%%%%%
 
 \section{K-Means}
-\subsection{KM2}
+\subsection{Lower order K-Means}
 \begin{frame}{K-Means}
 K-Means using 2 classes
 \begin{columns}[T]
@@ -104,7 +100,6 @@ K-Means using 2 classes
 \end{columns}
 \end{frame}
 
-\subsection{KM5}
 \begin{frame}{K-Means}
 K-Means using 5 classes
 \begin{columns}[T]
@@ -120,7 +115,7 @@ K-Means using 5 classes
 \end{columns}
 \end{frame}
 
-\subsection{KM10}
+\subsection{Higher order K-Means}
 \begin{frame}{K-Means}
 K-Means using 10 classes
 \begin{columns}[T]
@@ -136,7 +131,6 @@ K-Means using 10 classes
 \end{columns}
 \end{frame}
 
-\subsection{KM16}
 \begin{frame}{K-Means}
 K-Means using 16 classes
 \begin{columns}[T]
@@ -162,9 +156,11 @@ K-Means using 16 classes
 \begin{columns}[T]
 \begin{column}{.48\textwidth}
 % LEFT COLUMN
+\begin{itemize}
 \item Separates data into distinct classes
 \item Constructs a hyperplane between classes
 \item Soft-margin SVM versus Hard-margin SVM
+\end{itemize}
 \end{column}
 \hfill
 \begin{column}{.48\textwidth}
@@ -173,7 +169,6 @@ K-Means using 16 classes
 \end{columns}
 \end{frame}
 
-\subsection{Soft SVM}
 \begin{frame}{Support Vector Machine}
 \begin{columns}[T]
 \begin{column}{.48\textwidth}
@@ -183,9 +178,11 @@ K-Means using 16 classes
 \hfill
 \begin{column}{.48\textwidth}
 % RIGHT COLUMN
+\begin{itemize}
+\item Reduced data from 3D to 2D by appending rows (increasing the number of columns)
 \item Arbitrarily picked to separate between corn and not corn
 \item Soft SVM because of possibility of nonlinear separability and less influence by noise
-\item Reduced data from 3D to 2D
+\end{itemize}
 \end{column}
 \end{columns}
 \end{frame}
@@ -197,8 +194,22 @@ K-Means using 16 classes
 \section{Conclusion}
 \subsection{Results}
 \begin{frame}{Results}
+\begin{columns}[T]
+\begin{column}{.48\textwidth}
+% LEFT COLUMN
+\begin{itemize}
+\item We started to see land divisions in K-Means
+\item A soft SVM would very likely classify better
 \item K-Means: increase in the number of classes increases the noise level
 \item Soft-Margin SVM: data cannot be separated linearly. Multiclass SVM would provide better results 
+\end{itemize}
+\end{column}
+\hfill
+\begin{column}{.48\textwidth}
+% RIGHT COLUMN
+\includegraphics[scale=.3]{km16.png}
+\end{column}
+\end{columns}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -211,7 +222,7 @@ K-Means using 16 classes
 \begin{columns}[T]
 \begin{column}{.48\textwidth}
 % LEFT COLUMN
-\includegraphics[scale=.4]{wavelength1.png}
+\includegraphics[scale=.35]{wavelength1.png}
 \end{column}
 \hfill
 \begin{column}{.48\textwidth}
@@ -225,12 +236,12 @@ K-Means using 16 classes
 \end{columns}
 \end{frame}
 
-\subsection{Support Vector Machine}
+\subsection{Multiclass Support Vector Machine}
 \begin{frame}{Future Ideas}
 \begin{columns}[T]
 \begin{column}{.48\textwidth}
 % LEFT COLUMN
-\includegraphics[scale=.4]{groundtruth.png}
+\includegraphics[scale=.35]{groundtruth.png}
 \end{column}
 \hfill
 \begin{column}{.48\textwidth}
