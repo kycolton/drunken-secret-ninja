@@ -1,0 +1,170 @@
+\documentclass[11pt]{beamer}
+\usetheme{Szeged}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usecolortheme{dolphin}
+\author{Kyle Colton\\Thomas Kwak}
+\title{Classification of Land Types Through Clustering}
+%\setbeamercovered{transparent} 
+%\setbeamertemplate{navigation symbols}{} 
+%\logo{}
+\usepackage{animate}
+\institute{Math 191} 
+\date{\today}
+\subject{Indian Pines Hyperspectral Imaging}
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+%\begin{frame}
+%\tableofcontents
+%\end{frame}
+\section{Introduction}
+\subsection{Problem}
+\begin{frame}{Data Set}
+The \texttt{indian\_pines} dataset consists of hyperspectral earth images of farmland
+\begin{columns}[T]
+\begin{column}{.48\textwidth}
+% LEFT COLUMN
+\begin{itemize}
+\item Dimensions $145 x 145 x 200$
+\item Each image is $145x145$
+\item Images were captured at 200 different wavelengths
+\end{itemize}
+\end{column}
+\hfill
+\begin{column}{.48\textwidth}
+% RIGHT COLUMN
+\includegraphics[scale=.3]{gt.png}
+\end{column}
+\end{columns}
+\end{frame}
+
+\subsection{Exploration}
+\begin{frame}{Exploring the Data}
+\begin{center}
+% To run this, you must first convert the GIF to a series of PNGs
+% bash: convert indian_pines.gif indian_pines_%d.png
+\animategraphics[autoplay,loop,height=6cm]{10}{indian_pines_}{0}{199}
+\end{center}
+\end{frame}
+
+\section{Analysis}
+
+%%%%%%%%%%%%%%%%%%%
+%%%   K-Means   %%%
+%%%%%%%%%%%%%%%%%%%
+
+\section{K-Means}
+\subsection{KM2}
+\begin{frame}{K-Means}
+\begin{columns}[T]
+\begin{column}{.48\textwidth}
+% LEFT COLUMN
+\includegraphics[scale=.3]{km2.png}
+\end{column}
+\hfill
+\begin{column}{.48\textwidth}
+% RIGHT COLUMN
+\includegraphics[scale=.3]{gt.png}
+\end{column}
+\end{columns}
+\end{frame}
+
+\subsection{KM5}
+\begin{frame}{K-Means}
+\begin{columns}[T]
+\begin{column}{.48\textwidth}
+% LEFT COLUMN
+\includegraphics[scale=.3]{km5.png}
+\end{column}
+\hfill
+\begin{column}{.48\textwidth}
+% RIGHT COLUMN
+\includegraphics[scale=.3]{gt.png}
+\end{column}
+\end{columns}
+\end{frame}
+
+\subsection{KM10}
+\begin{frame}{K-Means}
+\begin{columns}[T]
+\begin{column}{.48\textwidth}
+% LEFT COLUMN
+\includegraphics[scale=.3]{km10.png}
+\end{column}
+\hfill
+\begin{column}{.48\textwidth}
+% RIGHT COLUMN
+\includegraphics[scale=.3]{gt.png}
+\end{column}
+\end{columns}
+\end{frame}
+
+\subsection{KM16}
+\begin{frame}{K-Means}
+\begin{columns}[T]
+\begin{column}{.48\textwidth}
+% LEFT COLUMN
+\includegraphics[scale=.3]{km16.png}
+\end{column}
+\hfill
+\begin{column}{.48\textwidth}
+% RIGHT COLUMN
+\includegraphics[scale=.3]{gt.png}
+\end{column}
+\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%
+%%%   SVM   %%%
+%%%%%%%%%%%%%%%
+
+\section{SVM}
+\begin{frame}{Support Vector Machine}
+
+\end{frame}
+
+\section{Further Analysis}
+\subsection{Noise Detection}
+\begin{frame}{Future Ideas}
+\begin{columns}[T]
+\begin{column}{.48\textwidth}
+% LEFT COLUMN
+\includegraphics[scale=.4]{wavelength1.png}
+\end{column}
+\hfill
+\begin{column}{.48\textwidth}
+% RIGHT COLUMN
+\begin{itemize}
+\item Some of the data appears noisy
+\item This could negatively impact classification
+\item Detecting noise and biasing the model towards ``clean'' data could help the prediction
+\end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Historgrams}
+\begin{center}
+% To run this, you must first convert the GIF to a series of PNGs
+% bash: convert histograms.gif histograms_%d.png
+\animategraphics[autoplay,loop,height=6cm]{10}{histograms_}{0}{199}
+\end{center}
+\end{frame}
+
+\section{Conclusion}
+\subsection{Results}
+\begin{frame}{Results}
+
+\end{frame}
+
+\subsection{Conclusion}
+\begin{frame}{Conclusion}
+
+\end{frame}
+\end{document}
