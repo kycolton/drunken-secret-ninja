@@ -1,0 +1,28 @@
+Total: 2 pages + figures
+
+%%%Introduction%%%
+
+	Hyperspectral imaging collects and processes information by taking images at varying frequencies within the electromagnetic spectrum. Because hyperspectral imaging can divide the spectrum into more band than the human eye, hyperspectral imaging is used to find objects, identify materials, or detect certain processes. Therefore, there are multiple applications within the fields of astronomy, agriculture, biomedical imaging, physics, and geosciences. 
+
+	One example of hyperspectral imaging is the Indian Pines test site in North-western Indiana. This dataset contains 145 by 145 pixel images taken at 224 different spectral reflectance bands in the wavelength ranging from 0.4 to 2.5 micrometers. Due to the region of water absorption, the number of bands had been reduced from 224 to 200. 
+
+	The goals of this experiment are to use k-means clustering, soft-margin support vector machines, and linear models to classify each pixel on the entire dataset set into one of the sixteen different crops found at the Indian Pines test site. 
+
+%%%Methods%%%
+
+	K-means clustering
+		K-means clustering is used to group samples into K clusters such that the distances between the samples within each group is small compared to the distance between groups. This was used to group each of the pixels into either two, five, ten, or sixteen different groups. 
+
+	Soft-margin support vector machines
+		Soft-margin support vector machines are supervised learning models used for classification through pattern recognition. Soft-margin support vector machines were used instead of hard-margin support vector machines because the dataset was found to be not linearly separable. A quarter of the ground truth dataset was used as training data for the soft-margin support vector machine. 
+
+	Linear-Gaussian models
+		The use of linear-Gaussian models allows for the reduction of a multivariate Gaussian to a linear Gaussian. Using probabilistic principal component analysis, the dataset can be reduced to a lower dimensionality, thus allowing potentially high accuracy with a low computational cost. 
+
+%%%Results%%%
+
+
+
+%%%Discussion%%%
+
+
