@@ -1,10 +1,14 @@
 load '../Data/Indian_pines_corrected.mat'
 
 [n, m, k] = size(indian_pines_corrected);
-
 obs = reshape(indian_pines_corrected, [n*m, k]);
 
-[coeff,score,latent] = pca(obs);
+disp('Starting regular PCA');
+[coeff,score,latent,tsquared,explained,mu] = pca(obs);
+disp('Finished regular PCA');
 
-% plots using entire data set
-% mapcaplot(reshape(indian_pines_corrected, [n*m, k]));
+disp('Starting weighted PCA');
+[w_coeff,~,w_latent,~,w_explained] = pca(obs,'VariableWeights','variance');
+disp('Finished weighted PCA');
+
+disp('Processes completed');
