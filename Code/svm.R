@@ -29,17 +29,9 @@ set.seed(48625)
 train <- sample(1:length(gt.long),length(gt.long)/4)
 test <- (1:length(gt.long))[-train]
 
-#ip.pred <- predict(ip.svm,newdata=ip.df[test,])
-#table(pred = ip.pred, true = as.factor(gt[test]))
-error <- vector(length=100)
-
-for( i in 1:100 )
-{
-	ip.svm <- svm(x=ip.df[train,], y=as.factor(gt.long[train]), cost = i)
-	ip.pred <- predict(ip.svm,newdata=ip.df)
-	svm.confusion <- table(pred = ip.pred, true = as.factor(gt.long))
-	error[i] <- sum(diag(svm.confusion)) / sum(svm.confusion)
-}
+ip.svm <- svm(x=ip.df[train,], y=as.factor(gt.long[train]), cost = 100)
+ip.pred <- predict(ip.svm,newdata=ip.df)
+svm.confusion <- table(pred = ip.pred, true = as.factor(gt.long))
 
 ip.svm.df <- as.data.frame(cbind(rep(1:n,each=m),rep(1:m,n),ip.pred))
 
