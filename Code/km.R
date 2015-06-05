@@ -37,7 +37,8 @@ ggplot(ip.km.df,aes(x,y,color=as.factor(class))) + geom_point()
 
 saveGIF({for(i in 1:z)
 { print(multiplot(
-    ggplot(as.data.frame(melt(ip[,,i])),aes(value)) + geom_histogram(binwidth=1,aes(y=..density..)) + xlim(750,8250) + ylim(0,.05),
+    ggplot(as.data.frame(melt(ip[,,i])),aes(value)) +
+	geom_histogram(binwidth=1,aes(y=..density..)) + xlim(750,8250) + ylim(0,.05),
     ggplot(as.data.frame(ip.long[,,i]),aes(V1,V2,color=V3))+geom_point(), cols=2))
 }}, interval=0.2, movie.name = 'together.gif')
 
@@ -46,7 +47,8 @@ saveGIF({for(i in 1:z)
 #~ {
 #~     n <- dim(x)[1]; m <- dim(x)[2]; z <- dim(x)[3]
 #~     entries <- sample(1:(n*m),k)
-#~     means <- array(dim=c(z,k)); for(l in 1:length(entries)){ means[,l] <- x[ceiling(entries[l]/n),entries[l] %% m,] }
+#~     means <- array(dim=c(z,k)); for(l in 1:length(entries))
+#~ 	       { means[,l] <- x[ceiling(entries[l]/n),entries[l] %% m,] }
 #~     dists = array(dim=c(n,m,k))
 #~     converge <- FALSE
 #~     old.labs <- labs <- array(dim=c(n,m))

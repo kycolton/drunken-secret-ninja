@@ -23,14 +23,14 @@
 \end{center}
 \caption{Sample captures taken from the hyperspectral image}
 \end{wrapfigure}
-Hyperspectral imaging collects and processes information by taking images at varying frequencies within the EM spectrum. Because the imaging can divide the spectrum into more band than the human eye, hyperspectral imaging is used to find objects, identify materials, or detect certain processes. Therefore, there are multiple applications within the fields of astronomy, agriculture, biomedical imaging, physics, and geosciences.
+Hyperspectral imaging collects and processes information by taking images at varying frequencies within the EM spectrum. Because the imaging can divide the spectrum into more bands than the human eye, hyperspectral imaging is useful to find objects, identify materials, or detect certain processes. Therefore, there are multiple applications within the fields of astronomy, agriculture, biomedical imaging, physics, and geosciences.
 
-One example of hyperspectral imaging is the Indian Pines test site in North-western Indiana. This dataset contains 145 by 145 pixel images taken at 224 different spectral reflectance bands in the wavelength ranging from 0.4 to 2.5 micrometers. Due to the region of water absorption, the number of bands had been reduced from 224 to 200.
+One example of hyperspectral imaging is the Indian Pines test site in North-western Indiana. This dataset contains 145 by 145 pixel images taken at 224 different spectral reflectance bands in the wavelength ranging from 0.4 to 2.5 micrometers. Due to the region of water absorption, some overly noisy bands were ignored and the number of bands had been reduced from 224 to 200.
 
-The goals of this experiment are to use k-means clustering, soft-margin support vector machines, and linear models to separate and classify each pixel on the entire dataset set into one of the sixteen different crops found at the Indian Pines test site with accuracy as close as possible to the ground truth.
+The goals of this experiment are to use K-means clustering, soft-margin support vector machines, and PCA to separate and classify pixels on the dataset into one of the sixteen different crops found at the Indian Pines test site with accuracy as close as possible to the ground truth.
 \section{Methods}
 \subsection{K-Means Clustering}
-K-means clustering is used to group samples into $k$ clusters such that the distances between the samples within each group is small compared to the distance between groups. This was used to group each of the pixels into either two, five, ten, or sixteen different groups.
+K-means clustering is used to group samples into $k$ clusters such that the euclidean distances between the samples within each group is small compared to the distance between groups. This was used to group each of the pixels into either two, five, ten, or sixteen different groups.
 \begin{figure}
 \begin{center}
 \begin{subfigure}[b]{0.24\textwidth}
@@ -58,7 +58,7 @@ Soft-margin support vector machines are supervised learning models used for clas
 To reduce the size of the dataset, principal component analysis was used on the data set after concatenating all bands into a single matrix. This method can then reduce the dataset into the necessary principal components, thus reducing the size of the overall dataset. By comparing the unweighted and weighted principal components, there is a reduction in preprocessing data from 21025 dimensions to 200 dimensions without much loss in accuracy.
 \section{Results}
 \subsection{K-Means Clustering}
-As the number of classes increased, more landtypes were able to be distinguished. However, the level of noise also increased as the number of classes increased. While K-Means was able to get general shapes, the individual crop-detection was noisy.
+As the number of classes increased, more landtypes were able to be distinguished. However, the level of noise also increased as the number of classes increased. While K-Means was able to get general shapes, the individual crop-detection was noisy. K-Means gave a good first-order approximation of the ground but lacked accuracy.
 \subsection{Soft-Margin Support Vector machines}
 \begin{wrapfigure}{r}{0.3\textwidth}\vspace{-20pt}
 \begin{center}
@@ -68,7 +68,7 @@ As the number of classes increased, more landtypes were able to be distinguished
 \end{wrapfigure}
 Initially, simple SVM was run to test the separability of the data into two classes. The data was found to be not linearly separable.
 
-Multiple SVM was used from the R library \texttt{e1071}. While simple SVM allows for 2 class selection, the multiclass SVM allows a greater number of classes by running SVM multiple times. A cost analysis was run to see the performance of the model as a function of cost. The maximum accuracy found by the soft-margin SVM was approximately 83.5\% at a constraint violation cost of 100. Generally, model accuracy increased as constraint violation cost increased.
+Multiple SVM was used from the R library \texttt{e1071}. While simple SVM allows for 2 class selection, the multiclass SVM allows a greater number of classes by running SVM in multiple combinations. A cost analysis was run to see the performance of the model as a function of constraint violation cost. The maximum accuracy found by the soft-margin SVM was approximately 83.5\% at a constraint violation cost of 100. Generally, model accuracy increased as constraint violation cost increased.
 
 Multiclass SVM was done using the gaussian radial basis kernel.
 \begin{figure}[!hb]
@@ -94,13 +94,13 @@ Using PCA, the dataset was reduced from a 200 x 21025 matrix to a 200 x 200 matr
 \end{center}
 \end{wrapfigure}
 
-Overall, the ability to separate and classify each data point using every band was a success. The k-means clustering was able to roughly identify the different landtypes and shapes seen in the ground image. Noise was introduced because of the lack of spacial awareness in the K-means function. One possible noise reduction method would be to weight the spectra beforehand to rely more on the crisply defined images. As is, some data points were classified incorrectly simply because of their proximity to other high-noise points.
+Overall, the ability to separate and classify each data point using every band was a success. The k-means clustering was able to roughly identify the different landtypes and shapes seen in the ground image. Noise was seen in part because of the lack of spacial awareness in the K-means function. One possible noise reduction method would be to weight the image spectra beforehand to rely more on the crisply defined wavelengths. As is, some data points were classified incorrectly likely because of their proximity to other high-noise points.
 
-Given a training subset of 25\%, the soft-margin multiple SVM could predict approximately 83.5\% of the data accurately compared to the ground truth. This could be explained by the kernel which was used as well as the fact that the data was nonlinear.
+Given a training subset of 25\%, the soft-margin multiple SVM could predict approximately 83.5\% of the data accurately compared to the ground truth. Visually, SVM did much better than K-means because the categories are based on a high-dimensional hyperplane rather than straight Euclidean distances. This worked better with the nonlinear data.
 
 For the principal component analysis, the data set was reduced and then examined either with weighting or without weighting. More than 90\% of the variance in the data could be explained by the first three principal components. By reducing the data set down from 21025 variables to 200, there is only a loss of about 10\% of information when only considering the first 3 of 200 variables. This disproportionate distribution of noise in the first few components allows for less noise and better dimensionality reduction. 
 \section{Future Work}
-Using both linear and nonlinear Gaussian models after preprocessing to separate the data would be less computationally expensive in comparison to k-means. More analysis on multiclass-SVM could lead to a higher accuracy in the separation of landtypes. Further dimensionality reduction would also be another solution to faster computations, but this could lead to higher inaccuracies or more loss in data.
+Using both linear and nonlinear Gaussian models after preprocessing to separate the data would be less computationally expensive in comparison to k-means. More analysis on multiclass SVM could lead to a higher accuracy in the separation of landtypes. Further dimensionality reduction would also be another solution to faster computations, but this could lead to higher inaccuracies or more loss in data.
 
 Post processing using mathematical morphology may also reduce noise in the predicted values. Since farmland is generally solid, inorganic shapes, closing (or opening) the predicted groups may reduce the noise.
 
