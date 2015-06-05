@@ -1,0 +1,36 @@
+Total: 2 pages + figures
+
+%%%Introduction%%%
+
+	Hyperspectral imaging collects and processes information by taking images at varying frequencies within the electromagnetic spectrum. Because hyperspectral imaging can divide the spectrum into more band than the human eye, hyperspectral imaging is used to find objects, identify materials, or detect certain processes. Therefore, there are multiple applications within the fields of astronomy, agriculture, biomedical imaging, physics, and geosciences. One example of hyperspectral imaging is the Indian Pines test site in North-western Indiana. This dataset contains 145 by 145 pixel images taken at 224 different spectral reflectance bands in the wavelength ranging from 0.4 to 2.5 micrometers. Due to the region of water absorption, the number of bands had been reduced from 224 to 200. The goals of this experiment are to use k-means clustering, soft-margin support vector machines, and linear models to separate and classify each pixel on the entire dataset set into one of the sixteen different crops found at the Indian Pines test site with accuracy as close as possible to the ground truth.
+
+%%%Methods%%%
+
+	K-means clustering
+		K-means clustering is used to group samples into K clusters such that the distances between the samples within each group is small compared to the distance between groups. This was used to group each of the pixels into either two, five, ten, or seventeen different groups. 
+
+	Soft-margin support vector machines
+		Soft-margin support vector machines are supervised learning models used for classification through pattern recognition. Soft-margin support vector machines were used instead of hard-margin support vector machines because the dataset was found to be not linearly separable. A quarter of the ground truth dataset was used as training data for the soft-margin support vector machine. 
+
+	Principal Component Anaylsis
+		To reduce the size of the dataset, principal component analysis was used on the data set after concatenating all bands into a single matrix. This method can then reduce the dataset into the necessary principal components, thus reducing the size of the overall dataset. By comparing the unweighted and weighted principal components, there is a reduction in preprocessing data from 21025 dimensions to 200 dimensions without much loss in accuracy.
+
+	Linear-Gaussian models
+		The use of linear-Gaussian models allows for the reduction of a multivariate Gaussian to a linear Gaussian. Using probabilistic principal component analysis, the dataset can be reduced to a lower dimensionality, thus allowing potentially high accuracy with a low computational cost. 	
+
+%%%Results%%%
+
+	K-means clustering
+		As the number of classes increased, more landtypes were able to be distinguished. However, the level of noise increased as as the number of classes increased.
+
+	Soft-margin support vector machines
+		The maximum accuracy found by the soft-margin SVM was approximately 83.5%. By reducing the cost from 100% to 50%, there was only a reduction of 0.5% in accuracy. 
+
+	Principal Component Anaylsis	
+		The dataset was reduced from a 200 x 21025 matrix to a 200 x 200 matrix. From the unweighted PCA, approximately 93.5% of the variance could be explained by just the first three principal components. From the weighted PCA, approximately 90.4% of the variance could be explained by the first three principal components.
+
+%%%Discussion%%%
+
+	Overall, the ability to separate and classify each data point using every band was a success. The k-means clustering was able to identify each of the seventeen different landtypes (sixteen crops plus no crop). The increase in noise could have been due to the constant updating of each centroid, thus some data points are more closely related to some means over other means. This could explain why some colors are spread across the entire map. Therefore, in order to converge, some data points were classified incorrectly. The soft-margin SVM could approximately 83.5% of the data accurately compared to the ground truth. This could be explained by the kernel which was used as well as the fact that the data was nonlinear. However, the computational costs did not increase significantly beyond the 25% cost; therefore, less iterations could produce accuracies similar to those produced by more iterations. For the principal component analysis, the data set was reduced and then examined either with weighting or without weighting. More than 90% of the variance in the data could be explained by the first three principal components. By reducing the data set down from 21025 variables to 200, there is only a loss of about 10% of information when only considering the first 3 of 200 variables. This disproportionate distribution of noise in the first few components allows for less noise and better dimensionality reduction. 
+
+	Other experiments can be run to expand upon the ideas touched with this first look. Using both linear and nonlinear Gaussian models after preprocessing to separate the data would be a less computationally costing method in comparison to k-means. More analysis on multiclass-SVM could lead to a higher accuracy in the separation of landtypes. Further dimensionality reduction would also be another solution to faster computations, but this could lead to higher inaccuracies or more loss in data. 
